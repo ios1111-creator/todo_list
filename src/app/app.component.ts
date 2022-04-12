@@ -49,6 +49,7 @@ setTimeout(()=>{
       date: this.date,
       done: false
     })
+    this.text='';
     console.log(this.todoLists)
   }
 

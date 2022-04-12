@@ -5,11 +5,11 @@
     </div>
     <div><label class="form-text">Your task:</label>
       <div class="addTask">
-        <input type="text" class="form-control" [(ngModel)]="text" (keydown.enter)="addTask()">
+        <input type="text" class="form-control" [(ngModel)]="text" (keydown.enter)="addTask()" >
         <input type="date" class="form-control" [(ngModel)]="date" (keydown.enter)="addTask()">
-        <span (click)="addTask()" class="material-icons btnAdd">
+        <button (click)="addTask();" class="material-icons btnAdd" [disabled]="text===''">
           add_circle
-        </span>
+        </button>
       </div>
     </div>
     <div class="lists">
@@ -27,7 +27,7 @@
 
         </li>
       </ul>
-      <button (click)="onDeleteAll()" class="btn btn-danger">Delete all tasks</button>
+      <button (click)="onDeleteAll()" class="btn btn-danger" [disabled]="todoLists.length===0">Delete all tasks</button>
     </div>
   </div>
   <footer class="footer">
