@@ -6,7 +6,7 @@
     <div><label class="form-text">Your task:</label>
       <div class="addTask">
         <input type="text" class="form-control" [(ngModel)]="text" (keydown.enter)="addTask()">
-        <input type="date" class="form-control" [(ngModel)]="data" (keydown.enter)="addTask()">
+        <input type="date" class="form-control" [(ngModel)]="date" (keydown.enter)="addTask()">
         <span (click)="addTask()" class="material-icons btnAdd">
           add_circle
         </span>
@@ -15,18 +15,25 @@
     <div class="lists">
       <ul class="list-group " *ngFor="let task of todoLists; let i=index;">
         <li class="list-group-item lists" #done [class.is-done]="task.done">
-          {{i + 1}} {{task.name}}-{{task.data | date: 'dd/MM/yyyy'}}
-         <div>
+          {{i + 1}}.{{task.id}} {{task.name}}-{{task.date | date: 'dd/MM/yyyy'}}
+          <div>
            <span (click)="onDone(task.id)" class="material-icons done-icon">
             done
           </span> |
-           <span (click)="onDelete(i)" class="material-icons delete-icon">
+            <span (click)="onDelete(i)" class="material-icons delete-icon">
             highlight_off
           </span>
-         </div>
+          </div>
 
         </li>
       </ul>
+      <button (click)="onDeleteAll()" class="btn btn-danger">Delete all tasks</button>
     </div>
+
   </div>
+  <footer class="footer">
+    <div class="card-footer">
+      {{ config?.['date'] | date: 'yyyy' }} {{ config?.['footer'] }}
+    </div>
+  </footer>
 </div>

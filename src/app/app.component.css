@@ -1,35 +1,50 @@
-*{
+* {
   margin: 0;
 }
-.logo{
+
+.logo {
   background-color: coral;
   margin: 10px auto 10px auto;
   text-align: center;
   width: 25vw;
 }
-.btnAdd{
+
+.btnAdd {
   font-size: 34px;
 }
-.addTask{
+
+.addTask {
   cursor: pointer;
   color: gray;
   display: flex;
 }
-.addTask:hover{
+
+.addTask:hover {
   color: black;
 }
-.material-icons{
+
+.material-icons {
   cursor: pointer;
 }
-.lists{
+
+.lists {
   /*display: flex;*/
 }
+
 .is-done {
   text-decoration: line-through;
 }
-.done-icon{
+
+.done-icon {
   color: greenyellow;
 }
-.delete-icon{
+
+.delete-icon {
   color: red;
+}
+
+.footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
