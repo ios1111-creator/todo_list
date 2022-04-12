@@ -69,5 +69,6 @@ setTimeout(()=>{
   }
   onDeleteAll(){
     this.todoLists=[];
+
   }
 }
