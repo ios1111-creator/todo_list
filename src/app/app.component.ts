@@ -8,24 +8,24 @@ import {Component,  OnInit,} from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'todo-list';
   text: string = '';
-  date = new Date();
+  date = '';
   id:number=3;
   config:{[key:string]:string}|null=null;
   todoLists = [
     {
       id: 0,
       name: 'Buy car ',
-      date: new Date(2022, 12, 22),
+      date: '2022-02-22',
       done: false
     }, {
       id: 1,
       name: 'Buy car ',
-      date: new Date(2022, 12, 22),
+      date: '2022-02-22',
       done: false
     }, {
       id: 2,
       name: 'Buy car ',
-      date: new Date(2022, 12, 22),
+      date: '2022-02-22',
       done: false
     },
   ]
@@ -50,6 +50,7 @@ setTimeout(()=>{
       done: false
     })
     this.text='';
+    this.date='';
     console.log(this.todoLists)
   }
 
