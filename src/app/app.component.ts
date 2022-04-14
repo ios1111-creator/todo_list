@@ -1,17 +1,19 @@
-import {Component,  OnInit,} from '@angular/core';
+import {Component} from '@angular/core';
+import {Task} from "./task";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'todo-list';
   text: string = '';
   date = '';
-  id:number=3;
-  config:{[key:string]:string}|null=null;
-  todoLists = [
+  id: number = 3;
+  toggle: boolean = false;
+  config: { [key: string]: string } | null = null;
+  todoLists: Task[] = [
     {
       id: 0,
       name: 'Buy car ',
@@ -28,18 +30,17 @@ export class AppComponent implements OnInit {
       date: '2022-02-22',
       done: false
     },
-  ]
-constructor() {
-setTimeout(()=>{
-  this.config={
-    title:'Todo list',
-    footer:'© Todo list  built in Angular.',
-    date: new Date().toDateString(),
-  }
-},2000)
-  }
-  ngOnInit() {
+  ];
 
+  constructor() {
+    setTimeout(() => {
+      this.config = {
+        title: 'Todo list',
+        footer: '© Todo list  built in Angular.',
+        date: new Date().toDateString(),
+      }
+    }, 2000);
+    this.sortTask();
   }
 
   addTask() {
@@ -48,29 +49,35 @@ setTimeout(()=>{
       name: this.text,
       date: this.date,
       done: false
-    })
-    this.text='';
-    this.date='';
-    console.log(this.todoLists)
+    });
+    this.text = '';
+    this.date = '';
+    this.sortTask();
   }
 
-  onDone(id: number) {
-    this.todoLists = this.todoLists.map(todo => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          done: !todo.done
-        }
-      }
-      return todo;
-    })
-    console.log(this.todoLists)
+  onDone(task: Task) {
+    task.done = true;
+    this.sortTask();
   }
-  onDelete(id:number){
-    this.todoLists.splice(id,1)
-  }
-  onDeleteAll(){
-    this.todoLists=[];
 
+  onDelete(id: number) {
+    this.todoLists.splice(id, 1);
+    this.sortTask();
+  }
+
+  onDeleteAll() {
+    this.todoLists = [];
+    this.sortTask();
+  }
+
+  toggleBtn() {
+    this.toggle = !this.toggle;
+    this.sortTask();
+  }
+
+  private sortTask() {
+    this.todoLists = this.todoLists.sort((a: Task, b: Task) =>
+      a.done === b.done ? 0 : a.done ? 1 : -1
+    );
   }
 }

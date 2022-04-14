@@ -3,8 +3,18 @@
     <div class="nav-wrapper logo">
       <h1>Todo List</h1>
     </div>
+    <div class="row">
+      <ng-container *ngIf="toggle;then editOn;else editOff"></ng-container>
+      <ng-template #editOff>
+      <button class="btn btn-success" (click)="toggleBtn()" >Add Task</button>
+      </ng-template>
+      <ng-template #editOn>
+        <button class="btn btn-danger" (click)="toggleBtn()" >Close</button>
+      </ng-template>
+
+    </div>
     <div><label class="form-text">Your task:</label>
-      <div class="addTask">
+      <div class="addTask" *ngIf="toggle">
         <input
           type="text"
           class="form-control"
@@ -26,22 +36,25 @@
       </div>
     </div>
     <div class="lists">
-      <ul class="list-group " *ngFor="let task of todoLists; let i=index;">
-        <li class="list-group-item lists" #done [class.is-done]="task.done">
-          {{i + 1}}.{{task.id}} {{task.name}}-{{task.date | date: 'dd/MM/yyyy'}}
+      <ul class="list-group " *ngFor="let task of todoLists; let i=index;" [ngSwitch]="task.done">
+        <li class="list-group-item lists" #done [class.is-done]="task.done" *ngSwitchCase="false">
+          {{i + 1}}.{{task.id}} {{task.name}}-{{task.date | date: 'EEEE-, M ,d, y'}}
           <div>
-           <span (click)="onDone(task.id)" class="material-icons done-icon">
+           <span (click)="onDone(task)" class="material-icons done-icon">
             done
           </span> |
             <span (click)="onDelete(i)" class="material-icons delete-icon">
             highlight_off
           </span>
           </div>
-
+        </li>
+        <li class="list-group-item is-done" *ngSwitchCase="true">
+          <span>{{task.name}}</span>
         </li>
       </ul>
       <button (click)="onDeleteAll()" class="btn btn-danger" [disabled]="todoLists.length===0">Delete all tasks</button>
     </div>
+    <h1 *ngIf="todoLists.length===0">No tasks</h1>
   </div>
   <footer class="footer">
     <div class="card-footer">
