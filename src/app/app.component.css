@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+}
+
+.logo {
+  background-color: coral;
+  margin: 10px auto 10px auto;
+  text-align: center;
+  width: 25vw;
+}
+
+.btnAdd {
+  font-size: 34px;
+}
+
+.addTask {
+  cursor: pointer;
+  color: gray;
+  display: flex;
+}
+
+.addTask:hover {
+  color: black;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.lists {
+  /*display: flex;*/
+}
+
+.is-done {
+  color:silver;
+  text-decoration: line-through;
+}
+
+.done-icon {
+  color: greenyellow;
+}
+
+.delete-icon {
+  color: red;
+}
+.footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
